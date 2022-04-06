@@ -3,25 +3,31 @@ package proyecto;
 
 
 public class Dato {
-    private int codeProducto=0;
+    private String codeProducto="";
     private String descripPro="";
     private int cantExistente=0;
-    private double precio=0.00;
+    private int precio=0;
     
     public Dato(){
-        this.codeProducto=0;
+        this.codeProducto="";
         this.descripPro="";
         this.cantExistente=0;
-        this.precio=0.00;
+        this.precio=0;
+        
+        
+        
+
     }
 
-    public int getCodeProducto() {
+    public String getCodeProducto() {
         return codeProducto;
     }
 
-    public void setCodeProducto(int codeProducto) {
+    public void setCodeProducto(String codeProducto) {
         this.codeProducto = codeProducto;
     }
+
+  
 
     public String getDescripPro() {
         return descripPro;
@@ -39,11 +45,11 @@ public class Dato {
         this.cantExistente = cantExistente;
     }
 
-    public double getPrecio() {
+    public int getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(int precio) {
         this.precio = precio;
     }
     
