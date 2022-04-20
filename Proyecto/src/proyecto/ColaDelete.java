@@ -36,14 +36,14 @@ public class ColaDelete extends javax.swing.JFrame {
         
         if(!esVacia()){
             String aux1=jTextField1.getText();
-            if(inicio.getElemento().getDescripPro().equals(aux1)){
+            if(inicio.getElemento().getCodeProducto().equals(aux1)){
                 inicio=inicio.getSiguiente();
             }else{
                 NodoC anterior;
                 NodoC auxiliar;
                 anterior=inicio;
                 auxiliar=inicio.getSiguiente();
-                while((auxiliar!=null)&&(!auxiliar.getElemento().getDescripPro().equals(aux1))){
+                while((auxiliar!=null)&&(!auxiliar.getElemento().getCodeProducto().equals(aux1))){
                     
                 }
                 if(auxiliar!=null){
@@ -73,7 +73,7 @@ public class ColaDelete extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 153, 51));
 
         jLabel1.setFont(new java.awt.Font("Anonymous Pro", 1, 24)); // NOI18N
-        jLabel1.setText("Digite la descripcion del producto:");
+        jLabel1.setText("Digite el Codigo del producto:");
 
         jTextField1.setFont(new java.awt.Font("Anonymous Pro", 1, 14)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
