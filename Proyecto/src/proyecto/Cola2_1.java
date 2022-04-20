@@ -14,11 +14,15 @@ public class Cola2_1 extends javax.swing.JFrame {
 
   private NodoC inicio;
   private NodoC fin;
+  private NodoDC iniDC;
+  private NodoDC finDC;
     
     public Cola2_1() {
         initComponents();
         this.inicio=null;
         this.fin=null;
+        this.finDC=null;
+        this.iniDC=null;
         setLocationRelativeTo(null);        // Centering on screen...
                        // Setting dimensions...
         setTitle("Ejemplo de Cola");
@@ -28,6 +32,15 @@ public class Cola2_1 extends javax.swing.JFrame {
             return true;
         }else{return false;}
     }
+ 
+ public boolean esVaciaDC(){
+      if(iniDC==null){
+         return true;
+      }else{
+         return false;
+      }
+   }
+ 
  private void limpiar(){
 
         jTextField1.setText("");
@@ -96,8 +109,71 @@ public class Cola2_1 extends javax.swing.JFrame {
             }
         }
     }
+public void copiarColaAListaDC(){
+      if(!esVacia()){
+         NodoC aux=inicio;
+         while(aux!=null){
+            llenarListaDC(aux.getElemento());
+            aux=aux.getSiguiente();
+         }
+         JOptionPane.showMessageDialog(null,"La cola fue copiada!");
+      }else{
+         JOptionPane.showMessageDialog(null,"No se puede copiar, cola vacía!");
+      }
+   }
 
-   
+    public void llenarListaDC(Dato d) {
+        NodoDC nuevo = new NodoDC();
+        nuevo.setElemento(d);
+        if (esVaciaDC()) {
+            iniDC = nuevo;
+            finDC = nuevo;
+            finDC.setSiguiente(iniDC);
+            iniDC.setAnterior(finDC);
+        } else if (d.getCantExistente()< iniDC.getElemento().getPrecio()) {
+            nuevo.setSiguiente(iniDC);
+            iniDC = nuevo;
+            finDC.setSiguiente(iniDC);
+            iniDC.setAnterior(finDC);
+        } else if (d.getCantExistente() >= finDC.getElemento().getPrecio()) {
+            finDC.setSiguiente(nuevo);
+            finDC = nuevo;
+            finDC.setSiguiente(iniDC);
+            iniDC.setAnterior(finDC);
+        } else {
+            NodoDC aux = iniDC;
+            while (aux.getSiguiente().getElemento().getCantExistente() < d.getPrecio()) {
+                aux = aux.getSiguiente();
+            }
+            nuevo.setSiguiente(aux.getSiguiente());
+            nuevo.setAnterior(aux);
+            aux.setSiguiente(nuevo);
+            nuevo.getSiguiente().setAnterior(nuevo);
+        } 
+    }
+    
+    public void mostrarListaDC(){
+      if(!esVaciaDC()){
+         String s=""; 
+         NodoDC aux=iniDC;
+         s=s+aux.getElemento().getDescripPro() +"<--"+ aux.getElemento().getCodeProducto()+"<--"+ aux.getElemento().getCantExistente()+"<--"+ aux.getElemento().getPrecio()+"-->";
+         aux=aux.getSiguiente();
+         while(aux!=iniDC){
+            s=s+aux.getElemento().getDescripPro() +"<--"+ aux.getElemento().getCodeProducto()+"<--"+ aux.getElemento().getCantExistente()+"<--"+ aux.getElemento().getPrecio()+"-->";
+            aux=aux.getSiguiente();
+         }
+         JOptionPane.showMessageDialog(null,
+                 "La lista doble circular contiene: \n" +s );
+      }else{
+         JOptionPane.showMessageDialog(null,
+                 "No se puede mostrar, lista vacía!");
+      }
+   }
+    
+    
+  
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
